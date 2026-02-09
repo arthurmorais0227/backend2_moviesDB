@@ -1,0 +1,350 @@
+import 'dotenv/config';
+import pkg from '@prisma/client';
+const { PrismaClient } = pkg;
+import { PrismaPg } from '@prisma/adapter-pg';
+import pg from 'pg';
+
+const pool = new pg.Pool({ connectionString: process.env.DATABASE_URL });
+const adapter = new PrismaPg(pool);
+const prisma = new PrismaClient({ adapter });
+
+async function main() {
+    console.log('🌱 Iniciando seed...');
+
+
+    await prisma.movie.createMany({
+        data: [
+            {
+                title: 'Harakiri',
+                description: 'Drama samurai clássico',
+                duration: 135,
+                genre: 'Drama',
+                rating: 9.6,
+                available: true,
+            },
+            {
+                title: '12 Angry Men',
+                description: 'Júri intensamente tenso',
+                duration: 96,
+                genre: 'Drama',
+                rating: 9.5,
+                available: true,
+            },
+            {
+                title: 'The Human Condition III: A Soldier’s Prayer',
+                description: 'Guerra e humanidade',
+                duration: 160,
+                genre: 'Drama',
+                rating: 9.45,
+                available: true,
+            },
+            {
+                title: 'Come and See',
+                description: 'Horror de guerra devastador',
+                duration: 142,
+                genre: 'Drama',
+                rating: 9.4,
+                available: true,
+            },
+            {
+                title: 'Seven Samurai',
+                description: 'Ação épica samurai',
+                duration: 207,
+                genre: 'Ação',
+                rating: 9.38,
+                available: true,
+            },
+            {
+                title: 'High and Low',
+                description: 'Drama policial magistral',
+                duration: 143,
+                genre: 'Suspense',
+                rating: 9.35,
+                available: true,
+            },
+            {
+                title: 'The Godfather Part II',
+                description: 'Continuação lendária',
+                duration: 200,
+                genre: 'Drama',
+                rating: 9.34,
+                available: true,
+            },
+            {
+                title: 'The Shawshank Redemption',
+                description: 'Esperança e redenção',
+                duration: 142,
+                genre: 'Drama',
+                rating: 9.32,
+                available: true,
+            },
+            {
+                title: 'City of God',
+                description: 'Vida nas favelas',
+                duration: 130,
+                genre: 'Drama',
+                rating: 9.3,
+                available: true,
+            },
+            {
+                title: 'The Human Condition I: No Greater Love',
+                description: 'Primeiro ato de épico humanista',
+                duration: 159,
+                genre: 'Drama',
+                rating: 9.28,
+                available: true,
+            },
+            {
+                title: 'Yi Yi',
+                description: 'Drama familiar profundo',
+                duration: 173,
+                genre: 'Drama',
+                rating: 9.25,
+                available: true,
+            },
+            {
+                title: 'Parasite',
+                description: 'Crítica social mordaz',
+                duration: 132,
+                genre: 'Suspense',
+                rating: 9.22,
+                available: true,
+            },
+            {
+                title: 'Schindler’s List',
+                description: 'Holocausto e humanidade',
+                duration: 195,
+                genre: 'Drama',
+                rating: 9.2,
+                available: true,
+            },
+            {
+                title: 'The Lord of the Rings: The Return of the King',
+                description: 'Conclusão épica',
+                duration: 201,
+                genre: 'Ação',
+                rating: 9.18,
+                available: true,
+            },
+            {
+                title: 'The Godfather',
+                description: 'Mafia clássico',
+                duration: 175,
+                genre: 'Drama',
+                rating: 9.15,
+                available: true,
+            },
+            {
+                title: 'Ikiru',
+                description: 'Reflexão sobre a vida',
+                duration: 143,
+                genre: 'Drama',
+                rating: 9.12,
+                available: true,
+            },
+            {
+                title: 'Ran',
+                description: 'Tragédia e guerra',
+                duration: 162,
+                genre: 'Drama',
+                rating: 9.1,
+                available: true,
+            },
+            {
+                title: 'La Haine',
+                description: 'Retrato urbano cru',
+                duration: 98,
+                genre: 'Drama',
+                rating: 9.08,
+                available: true,
+            },
+            {
+                title: 'The Good, the Bad and the Ugly',
+                description: 'Western clássico',
+                duration: 161,
+                genre: 'Ação',
+                rating: 9.06,
+                available: true,
+            },
+            {
+                title: 'A Brighter Summer Day',
+                description: 'Drama histórico',
+                duration: 237,
+                genre: 'Drama',
+                rating: 9.04,
+                available: true,
+            },
+            {
+                title: 'GoodFellas',
+                description: 'Máfia estilosa',
+                duration: 146,
+                genre: 'Drama',
+                rating: 9.02,
+                available: true,
+            },
+            {
+                title: 'Neon Genesis Evangelion: The End of Evangelion',
+                description: 'Anime existencial',
+                duration: 87,
+                genre: 'Animação',
+                rating: 9.0,
+                available: true,
+            },
+            {
+                title: 'There Will Be Blood',
+                description: 'Drama intenso',
+                duration: 158,
+                genre: 'Drama',
+                rating: 8.98,
+                available: true,
+            },
+            {
+                title: 'The Human Condition II: Road to Eternity',
+                description: 'Segundo ato da saga',
+                duration: 162,
+                genre: 'Drama',
+                rating: 8.96,
+                available: true,
+            },
+            {
+                title: 'Spirited Away',
+                description: 'Fantasia animada',
+                duration: 125,
+                genre: 'Animação',
+                rating: 8.95,
+                available: true,
+            },
+            {
+                title: 'The Dark Knight',
+                description: 'Herói sombrio',
+                duration: 152,
+                genre: 'Ação',
+                rating: 8.92,
+                available: true,
+            },
+            {
+                title: 'Paths of Glory',
+                description: 'Anti-guerra poderoso',
+                duration: 88,
+                genre: 'Drama',
+                rating: 8.9,
+                available: true,
+            },
+            {
+                title: 'Portrait of a Lady on Fire',
+                description: 'Romance contemplativo',
+                duration: 122,
+                genre: 'Romance',
+                rating: 8.88,
+                available: true,
+            },
+            {
+                title: 'Apocalypse Now',
+                description: 'Guerra psicodélica',
+                duration: 147,
+                genre: 'Drama',
+                rating: 8.86,
+                available: true,
+            },
+            {
+                title: 'Sunset Boulevard',
+                description: 'Noir clássico',
+                duration: 110,
+                genre: 'Drama',
+                rating: 8.84,
+                available: true,
+            },
+            {
+                title: 'Stalker',
+                description: 'Ficção filosófica',
+                duration: 163,
+                genre: 'Científica',
+                rating: 8.82,
+                available: true,
+            },
+            {
+                title: 'Grave of the Fireflies',
+                description: 'Anime comovente',
+                duration: 89,
+                genre: 'Animação',
+                rating: 8.8,
+                available: true,
+            },
+            {
+                title: 'Spider-Man: Across the Spider-Verse',
+                description: 'Animação inovadora',
+                duration: 140,
+                genre: 'Animação',
+                rating: 8.78,
+                available: true,
+            },
+            {
+                title: 'Cinema Paradiso',
+                description: 'Ode ao cinema',
+                duration: 155,
+                genre: 'Drama',
+                rating: 8.76,
+                available: true,
+            },
+            {
+                title: 'In the Mood for Love',
+                description: 'Romance elegante',
+                duration: 98,
+                genre: 'Romance',
+                rating: 8.74,
+                available: true,
+            },
+            {
+                title: 'Andrei Rublev',
+                description: 'Epicidade artística',
+                duration: 205,
+                genre: 'Drama',
+                rating: 8.72,
+                available: true,
+            },
+            {
+                title: 'The Empire Strikes Back',
+                description: 'Saga espacial lendária',
+                duration: 124,
+                genre: 'Científica',
+                rating: 8.7,
+                available: true,
+            },
+            {
+                title: 'Perfect Blue',
+                description: 'Thriller animado psicológico',
+                duration: 81,
+                genre: 'Animação',
+                rating: 8.68,
+                available: true,
+            },
+            {
+                title: 'Le Trou',
+                description: 'Prisional clássico',
+                duration: 83,
+                genre: 'Suspense',
+                rating: 8.66,
+                available: true,
+            },
+            {
+                title: 'Oldboy',
+                description: 'Vingança estilosa',
+                duration: 120,
+                genre: 'Suspense',
+                rating: 8.64,
+                available: true,
+            },
+        ],
+    });
+
+    console.log('✅ Seed concluído com sucesso!');
+}
+
+main()
+    .catch((e) => {
+        console.error('❌ Erro no seed:', e);
+        process.exit(1);
+    })
+    .finally(async () => {
+        await prisma.$disconnect();
+    });
