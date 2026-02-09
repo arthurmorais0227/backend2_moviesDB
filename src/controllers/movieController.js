@@ -44,7 +44,45 @@ export const create = async (req, res) => {
         if (description.trim().length < 10)
             return res.status(400).json({ error: 'A descrição deve ter mais de 10 caracteres!' });
 
+            const palavrasProibidas = [
+            'palavrão',
+            'ofensivo',
+            'idiota',
+            'burro',
+            'imbecil',
+            'estúpido',
+            'lixo',
+            'merda',
+            'porcaria',
+            'droga',
+            'inferno',
+            'diabo',
+            'ódio',
+            'maldito',
+            'desgraça',
+            'cretino',
+            'nojento',
+            'ridículo',
+            'babaca',
+            'otário',
+        ];
+
+        if (description) {
+            const lowerDescription = description.toLowerCase();
+
+            const palavraEncontrada = palavrasProibidas.find((word) => lowerDescription.includes(word));
+
+            if (palavraEncontrada) {
+                return res.status(400).json({
+                    success: false,
+                    message: `A descrição contém a palavra proibida "${palavraEncontrada}".`,
+                });
+            }
+        }
+
         if (!duration) return res.status(400).json({ error: 'A duração é obrigatória!' });
+
+        if(duration < 30) return res.status(400).json({error: 'A duração mínima é de 30 minutos!'})
 
         if (duration <= 0)
             return res
@@ -78,6 +116,8 @@ export const create = async (req, res) => {
         }
 
         if (!rating) return res.status(400).json({ error: 'A avaliação é obrigatória!' });
+
+        if(rating > 8 && genre === "Terror") return res.status(400).json({ error: 'Se o genêro for terror, a nota não pode ser maior que 8'})
 
         if (rating < 0 || rating > 10)
             return res.status(400).json({ error: 'A avaliação deve ser um número entre 0 e 10!' });
@@ -186,6 +226,44 @@ export const update = async (req, res) => {
             }
         }
 
+        const palavrasProibidas = [
+            'palavrão',
+            'ofensivo',
+            'idiota',
+            'burro',
+            'imbecil',
+            'estúpido',
+            'lixo',
+            'merda',
+            'porcaria',
+            'droga',
+            'inferno',
+            'diabo',
+            'ódio',
+            'maldito',
+            'desgraça',
+            'cretino',
+            'nojento',
+            'ridículo',
+            'babaca',
+            'otário',
+        ];
+
+        if (description) {
+            const lowerDescription = description.toLowerCase();
+
+            const palavraEncontrada = palavrasProibidas.find((word) =>
+                lowerDescription.includes(word),
+            );
+
+            if (palavraEncontrada) {
+                return res.status(400).json({
+                    success: false,
+                    message: `A descrição contém a palavra proibida "${palavraEncontrada}".`,
+                });
+            }
+        }
+
         if (duration !== undefined) {
             if (!duration) {
                 return res.status(400).json({ error: 'A duração é obrigatória!' });
@@ -284,7 +362,7 @@ export const remove = async (req, res) => {
 
         await model.remove(id);
         res.json({
-            message: `O registro "${exists.nome}" foi deletado com sucesso!`,
+            message: `O registro "${exists.title}" foi deletado com sucesso!`,
             deletado: exists,
         });
     } catch (error) {
